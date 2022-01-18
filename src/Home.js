@@ -14,15 +14,27 @@ function Home() {
       setJobsData(data)
     }
   }, [])
-  console.log(jobsData)
 
+  function FindXYPoints(data) {
+    const salary = data.map((e) => e.salary).sort((a, b) => a - b)
+    const headcount = data.map((e) => e.headcount).sort((a, b) => a - b)
+    console.log('salary', salary)
+    console.log('headcount', headcount)
+  }
+
+  FindXYPoints(jobsData)
   const bubbles = jobsData.map((job, index) => <Bubble job={job} id={index} />)
-  
+
   return (
     <div className='container'>
-      {/* <div className="box red" ></div>
-        <div className="box stack-top blue" ></div> */}
-      {bubbles}
+      <div>
+        <div></div>
+        <div></div>
+      </div>
+      <div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   )
 }
