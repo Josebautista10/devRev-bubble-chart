@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import Bubble from './components/Bubble'
+import './Home.css'
 
 function Home() {
   const [jobsData, setJobsData] = useState([])
@@ -14,15 +16,15 @@ function Home() {
   }, [])
   console.log(jobsData)
 
-  const jobs = jobsData.map((e, index) => {
-    return <li key={index}>
-      <p>Title:{e.title}</p>
-      <p>Salary:{e.salary}</p>
-      <p>Compratio:{e.compratio}</p>
-      <p>Headcount:{e.headcount}</p>
-    </li>
-  })
-  return <ul>{jobs}</ul>
+  const bubbles = jobsData.map((job, index) => <Bubble job={job} id={index} />)
+  
+  return (
+    <div className='container'>
+      {/* <div className="box red" ></div>
+        <div className="box stack-top blue" ></div> */}
+      {bubbles}
+    </div>
+  )
 }
 
 export default Home
