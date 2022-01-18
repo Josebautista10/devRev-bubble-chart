@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Bubble from './components/Bubble'
 import './Home.css'
+import FindSteps from './utils/FindSteps'
+
+import FindXYPoints from './utils/FindXYPoints'
 
 function Home() {
   const [jobsData, setJobsData] = useState([])
@@ -15,25 +18,23 @@ function Home() {
     }
   }, [])
 
-  function FindXYPoints(data) {
-    const salary = data.map((e) => e.salary).sort((a, b) => a - b)
-    const headcount = data.map((e) => e.headcount).sort((a, b) => a - b)
-    console.log('salary', salary)
-    console.log('headcount', headcount)
-  }
+  console.log(FindXYPoints(jobsData))
+  console.log(FindSteps(FindXYPoints(jobsData)))
 
-  FindXYPoints(jobsData)
-  const bubbles = jobsData.map((job, index) => <Bubble job={job} id={index} />)
+  const bubbles = jobsData.map((job, index) => (
+    <Bubble job={job} id={index} key={index} />
+  ))
 
   return (
     <div className='container'>
-      <div>
-        <div></div>
-        <div></div>
+      <div className='top-half'>
+        <div className='quadrant-1 quadrant' id='1'></div>
+        <div className='quadrant-2 quadrant' id='2'></div>
       </div>
-      <div>
-        <div></div>
-        <div></div>
+      <p>hello</p>
+      <div className='bottom-half'>
+        <div className='quadrant-3 quadrant' id='3'></div>
+        <div className='quadrant-4 quadrant' id='4'></div>
       </div>
     </div>
   )
