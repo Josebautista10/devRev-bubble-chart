@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Bubble from './components/Bubble'
+import Bubble from './components/Bubble/Bubble'
 import './Home.css'
 import FindSteps from './utils/FindSteps'
 
@@ -18,9 +18,34 @@ function Home() {
     }
   }, [])
 
-  console.log(FindXYPoints(jobsData))
   console.log(FindSteps(FindXYPoints(jobsData)))
 
+  // const xAxisSteps = FindSteps(FindXYPoints(jobsData)).xAxisSteps.map(
+  //   (step, index) => (
+  //     <div key={index} className='x-axis-steps'>
+  //       <p>|</p>
+  //       <p>{step}</p>
+  //     </div>
+  //   )
+  // )
+
+    const leftXAxisSteps = FindSteps(FindXYPoints(jobsData)).leftXAxisSteps.map(
+    (step, index) => (
+      <div key={index} className='x-axis-steps'>
+        <p>|</p>
+        <p>{step}</p>
+      </div>
+    )
+  )
+
+  const rightXAxisSteps = FindSteps(FindXYPoints(jobsData)).rightXAxisSteps.map(
+    (step, index) => (
+      <div key={index} className='x-axis-steps'>
+        <p>|</p>
+        <p>{step}</p>
+      </div>
+    )
+  )
   const bubbles = jobsData.map((job, index) => (
     <Bubble job={job} id={index} key={index} />
   ))
@@ -31,10 +56,14 @@ function Home() {
         <div className='quadrant-1 quadrant' id='1'></div>
         <div className='quadrant-2 quadrant' id='2'></div>
       </div>
-      <p>hello</p>
+      <div className='x-axis'></div>
       <div className='bottom-half'>
-        <div className='quadrant-3 quadrant' id='3'></div>
-        <div className='quadrant-4 quadrant' id='4'></div>
+        <div className='quadrant-3 quadrant x-axis' id='3'>
+          {leftXAxisSteps}
+        </div>
+        <div className='quadrant-4 quadrant x-axis' id='4'>
+        {rightXAxisSteps}
+        </div>
       </div>
     </div>
   )

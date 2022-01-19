@@ -5,6 +5,7 @@
   flex-direction:column;
   background-color:rgb(255, 0, 0)
 }
+/* <<<<<<<<GRAPH CSS>>>>>>>>> */
 .top-half {
   display: flex;
   height:50%;
@@ -21,4 +22,20 @@
 .quadrant {
   width:50%;
   border: 1px solid;
+  border-top:none;
+  z-index:9999
+}
+
+.x-axis {
+  display:flex;
+  justify-content: space-around;
+}
+.x-axis-steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.x-axis p{
+  margin: 0;
+  padding: 0;
 }
