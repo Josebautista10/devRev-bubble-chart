@@ -3,14 +3,13 @@
   height: 100vh;
   display:flex;
   flex-direction:column;
-  background-color:rgb(255, 0, 0)
+  background-color:rgb(241, 241, 241)
 }
 /* <<<<<<<<GRAPH CSS>>>>>>>>> */
 .top-half {
   display: flex;
   height:50%;
   width:100%;
-  background-color:red
 }
 
 .bottom-half {
@@ -23,19 +22,42 @@
   width:50%;
   border: 1px solid;
   border-top:none;
-  z-index:9999
+  z-index:1;
+  position: relative;
 }
 
 .x-axis {
   display:flex;
   justify-content: space-around;
+  z-index: 2;
 }
+
 .x-axis-steps {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .x-axis p{
   margin: 0;
   padding: 0;
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  justify-content: space-evenly;
+  z-index:2;
+  position:absolute;
+}
+
+.y-axis p{
+  margin: 0;
+  padding: 0;
+}
+
+.y-axis-steps {
+  display: flex;
 }

@@ -46,23 +46,44 @@ function Home() {
       </div>
     )
   )
+
+const topYAxisSteps = FindSteps(FindXYPoints(jobsData)).topYAxisSteps.reverse().map(
+  (step, index) => (
+    <div key={index} className='y-axis-steps'>
+      <p>-{step}</p>
+    </div>
+  )
+)
+const bottomYAxisSteps = FindSteps(FindXYPoints(jobsData)).bottomYAxisSteps.reverse().map(
+  (step, index) => (
+    <div key={index} className='y-axis-steps'>
+      <p>-{step}</p>
+    </div>
+  )
+)
+
   const bubbles = jobsData.map((job, index) => (
     <Bubble job={job} id={index} key={index} />
   ))
-
+console.log(bubbles[0])
   return (
     <div className='container'>
       <div className='top-half'>
-        <div className='quadrant-1 quadrant' id='1'></div>
-        <div className='quadrant-2 quadrant' id='2'></div>
-      </div>
-      <div className='x-axis'></div>
-      <div className='bottom-half'>
-        <div className='quadrant-3 quadrant x-axis' id='3'>
-          {leftXAxisSteps}
+        <div className='quadrant-1 quadrant' id='1'>
+          {bubbles[0]}
         </div>
-        <div className='quadrant-4 quadrant x-axis' id='4'>
-        {rightXAxisSteps}
+        <div className='quadrant-2 quadrant' id='2'>
+        <div className='y-axis'>{topYAxisSteps}</div>
+
+        </div>
+      </div>
+      <div className='bottom-half'>
+        <div className='quadrant-3 quadrant' id='3'>
+          <div className='x-axis'>{leftXAxisSteps}</div>
+        </div>
+        <div className='quadrant-4 quadrant' id='4'>
+        <div className='x-axis'>{rightXAxisSteps}</div>
+          <div className='y-axis'>{bottomYAxisSteps}</div>
         </div>
       </div>
     </div>

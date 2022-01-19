@@ -25,10 +25,14 @@ function FindSteps(data) {
   const lengthOfXAxisArr = Math.floor(xAxisSteps.length /2)
   const leftXAxisSteps = xAxisSteps.slice(0, lengthOfXAxisArr)
   const rightXAxisSteps = xAxisSteps.slice(lengthOfXAxisArr)
+  
+  const lengthOfYAxisArr = Math.floor(yAxisSteps.length /2)
+  const bottomYAxisSteps = yAxisSteps.slice(0, lengthOfYAxisArr)
+  const topYAxisSteps = yAxisSteps.slice(lengthOfYAxisArr)
 
   
-  
-  return {leftXAxisSteps,rightXAxisSteps}
+  console.log(bottomYAxisSteps,topYAxisSteps);
+  return {leftXAxisSteps,rightXAxisSteps, bottomYAxisSteps, topYAxisSteps}
 }
 
 export default FindSteps
