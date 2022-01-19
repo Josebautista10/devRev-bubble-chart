@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Bubble from './components/Bubble/Bubble'
 import './Home.css'
+import FilterBubbles from './utils/FilterBubbles'
 import FindSteps from './utils/FindSteps'
 
 import FindXYPoints from './utils/FindXYPoints'
@@ -17,73 +18,75 @@ function Home() {
       setJobsData(data)
     }
   }, [])
+  const leftXAxis = FindSteps(FindXYPoints(jobsData)).leftXAxisSteps
+  const rightXAxis = FindSteps(FindXYPoints(jobsData)).rightXAxisSteps
+  const bottomYAxis = FindSteps(FindXYPoints(jobsData)).bottomYAxisSteps
+  const topYAxis = FindSteps(FindXYPoints(jobsData)).topYAxisSteps
+  
 
-  console.log(FindSteps(FindXYPoints(jobsData)))
+  const leftXAxisSteps = leftXAxis.map((step, index) => (
+    <div key={index} className='x-axis-steps'>
+      <p>|</p>
+      <p>{step}</p>
+    </div>
+  ))
 
-  // const xAxisSteps = FindSteps(FindXYPoints(jobsData)).xAxisSteps.map(
-  //   (step, index) => (
-  //     <div key={index} className='x-axis-steps'>
-  //       <p>|</p>
-  //       <p>{step}</p>
-  //     </div>
-  //   )
-  // )
+  const rightXAxisSteps = rightXAxis.map((step, index) => (
+    <div key={index} className='x-axis-steps'>
+      <p>|</p>
+      <p>{step}</p>
+    </div>
+  ))
 
-    const leftXAxisSteps = FindSteps(FindXYPoints(jobsData)).leftXAxisSteps.map(
-    (step, index) => (
-      <div key={index} className='x-axis-steps'>
-        <p>|</p>
-        <p>{step}</p>
-      </div>
-    )
-  )
-
-  const rightXAxisSteps = FindSteps(FindXYPoints(jobsData)).rightXAxisSteps.map(
-    (step, index) => (
-      <div key={index} className='x-axis-steps'>
-        <p>|</p>
-        <p>{step}</p>
-      </div>
-    )
-  )
-
-const topYAxisSteps = FindSteps(FindXYPoints(jobsData)).topYAxisSteps.reverse().map(
-  (step, index) => (
+  const topYAxisSteps = [...topYAxis].reverse().map((step, index) => (
     <div key={index} className='y-axis-steps'>
       <p>-{step}</p>
     </div>
-  )
-)
-const bottomYAxisSteps = FindSteps(FindXYPoints(jobsData)).bottomYAxisSteps.reverse().map(
-  (step, index) => (
+  ))
+  const bottomYAxisSteps = bottomYAxis.reverse().map((step, index) => (
     <div key={index} className='y-axis-steps'>
       <p>-{step}</p>
     </div>
-  )
-)
+  ))
 
   const bubbles = jobsData.map((job, index) => (
     <Bubble job={job} id={index} key={index} />
   ))
-console.log(bubbles[0])
+
+  const quadrants = FilterBubbles(jobsData, { leftXAxis, rightXAxis }, { topYAxis, bottomYAxis })
+  
+  const q1 = quadrants.quadrant1.map((job, index) => (
+    <Bubble job={job} id={index} key={index} />
+  ))
+  const q2 = quadrants.quadrant2.map((job, index) => (
+    <Bubble job={job} id={index} key={index} />
+  ))
+  const q3 = quadrants.quadrant3.map((job, index) => (
+    <Bubble job={job} id={index} key={index} />
+  ))
+  const q4 = quadrants.quadrant4.map((job, index) => (
+    <Bubble job={job} id={index} key={index} />
+  ))
   return (
     <div className='container'>
       <div className='top-half'>
         <div className='quadrant-1 quadrant' id='1'>
-          {bubbles[0]}
+          {q1}
         </div>
         <div className='quadrant-2 quadrant' id='2'>
-        <div className='y-axis'>{topYAxisSteps}</div>
-
+          <div className='y-axis'>{topYAxisSteps}</div>
+          {q2}
         </div>
       </div>
       <div className='bottom-half'>
         <div className='quadrant-3 quadrant' id='3'>
           <div className='x-axis'>{leftXAxisSteps}</div>
+          {q3}
         </div>
         <div className='quadrant-4 quadrant' id='4'>
-        <div className='x-axis'>{rightXAxisSteps}</div>
+          <div className='x-axis'>{rightXAxisSteps}</div>
           <div className='y-axis'>{bottomYAxisSteps}</div>
+          {q4}
         </div>
       </div>
     </div>

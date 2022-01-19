@@ -14,12 +14,12 @@ function FindSteps(data) {
     max: Math.max(...headcount),
     step: Math.floor((Math.max(...headcount) - Math.min(...headcount)) / compratio.length)
   }
-  for (let i = XObj.min; i < XObj.max; i+=XObj.step) {
-    xAxisSteps.push(i)
+  for (let i = XObj.min - XObj.step; i <= XObj.max + XObj.step; i+=XObj.step) {
+    i < 0 ? xAxisSteps.push(0) : xAxisSteps.push(i)
   }
   
-  for (let i = YObj.min; i < YObj.max; i+=YObj.step) {
-    yAxisSteps.push(i)
+  for (let i = YObj.min; i <= YObj.max; i+=YObj.step ) {
+    i < 0 ? yAxisSteps.push(0) : yAxisSteps.push(i)
   }
 
   const lengthOfXAxisArr = Math.floor(xAxisSteps.length /2)
@@ -31,7 +31,6 @@ function FindSteps(data) {
   const topYAxisSteps = yAxisSteps.slice(lengthOfYAxisArr)
 
   
-  console.log(bottomYAxisSteps,topYAxisSteps);
   return {leftXAxisSteps,rightXAxisSteps, bottomYAxisSteps, topYAxisSteps}
 }
 
