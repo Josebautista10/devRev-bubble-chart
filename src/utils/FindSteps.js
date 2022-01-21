@@ -31,7 +31,6 @@ function FindSteps(data) {
   const topYAxisSteps = yAxisSteps.slice(lengthOfYAxisArr)
 
   
-  console.log(bottomYAxisSteps,topYAxisSteps);
   return {leftXAxisSteps,rightXAxisSteps, bottomYAxisSteps, topYAxisSteps}
 }
 
