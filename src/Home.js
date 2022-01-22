@@ -33,7 +33,7 @@ function Home() {
     <Bubble job={job} id={index} key={index} />
   ))
 
-  return jobsData.length > 0 ?  <DrawCanvas steps={test()} />: null
+  return jobsData.length > 0 ?  <DrawCanvas steps={test()} jobsData={jobsData}/>: null
 }
 
 export default Home
