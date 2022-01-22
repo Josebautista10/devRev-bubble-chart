@@ -1,38 +1,33 @@
 function FindSteps(data) {
-  const {compratio, headcount} = data
-  const xAxisSteps = []
-  const yAxisSteps = []
+  const { compratio, headcount } = data
+  const xAxis = []
+  const yAxis = []
 
   const XObj = {
     min: Math.min(...compratio),
     max: Math.max(...compratio),
-    step: Math.floor((Math.max(...compratio) - Math.min(...compratio)) / compratio.length)
+    step: Math.floor(
+      (Math.max(...compratio) - Math.min(...compratio)) / compratio.length
+    )
   }
-  
+
   const YObj = {
     min: Math.min(...headcount),
     max: Math.max(...headcount),
-    step: Math.floor((Math.max(...headcount) - Math.min(...headcount)) / compratio.length)
+    step: Math.floor(
+      (Math.max(...headcount) - Math.min(...headcount)) / compratio.length
+    )
   }
-  for (let i = XObj.min; i < XObj.max; i+=XObj.step) {
-    xAxisSteps.push(i)
-  }
-  
-  for (let i = YObj.min; i < YObj.max; i+=YObj.step) {
-    yAxisSteps.push(i)
+  for (let i = 0; i <= XObj.max + XObj.step; i += XObj.step) {
+    xAxis.push(i)
   }
 
-  const lengthOfXAxisArr = Math.floor(xAxisSteps.length /2)
-  const leftXAxisSteps = xAxisSteps.slice(0, lengthOfXAxisArr)
-  const rightXAxisSteps = xAxisSteps.slice(lengthOfXAxisArr)
-  
-  const lengthOfYAxisArr = Math.floor(yAxisSteps.length /2)
-  const bottomYAxisSteps = yAxisSteps.slice(0, lengthOfYAxisArr)
-  const topYAxisSteps = yAxisSteps.slice(lengthOfYAxisArr)
+  for (let i = YObj.min; i <= YObj.max + YObj.step; i += YObj.step) {
+    yAxis.push(i)
+  }
+  yAxis.reverse()
 
-  
-  console.log(bottomYAxisSteps,topYAxisSteps);
-  return {leftXAxisSteps,rightXAxisSteps, bottomYAxisSteps, topYAxisSteps}
+  return { xAxis, yAxis }
 }
 
 export default FindSteps

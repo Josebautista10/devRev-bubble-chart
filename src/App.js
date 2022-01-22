@@ -1,13 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import Home from './Home';
+import React, { useEffect, useRef } from 'react'
+import Home from './Home'
 
 function App() {
-  return (
-    <div >
-      <Home/>
-    </div>
-  );
+  return <Home/>
 }
 
-export default App;
+export default App
