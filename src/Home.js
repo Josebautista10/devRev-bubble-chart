@@ -20,13 +20,13 @@ function Home() {
     fetchData()
   }, [])
 
-  function test() {
+  function chartSteps() {
     const xAndYValues = FindXYPoints(jobsData)
     return FindSteps(xAndYValues)
   }
 
   return jobsData.length > 0 ? (
-    <DrawCanvas steps={test()} jobsData={jobsData} />
+    <DrawCanvas steps={chartSteps()} jobsData={jobsData} />
   ) : null
 }
 
