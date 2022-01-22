@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './DrawCanvas.css'
-import GetRandomColor from '.././utils/GetRandomColor'
 import DrawBubbles from '../utils/DrawBubbles'
 
 function DrawCanvas(props) {
   const { xAxis, yAxis } = props.steps
   const { jobsData } = props
+  const [canvasWidth, setCanvasWidth] = useState([window.innerWidth])
+  const [canvasHeight, setCanvasHeight] = useState([window.innerHeight])
   const numberOfXSteps = xAxis.length
   const numberOfYSteps = yAxis.length
   const spacingYAxis = Math.round(window.innerHeight / numberOfYSteps - 2)
@@ -13,25 +14,25 @@ function DrawCanvas(props) {
   const reversedYAxis = yAxis.reverse()
 
   const canvasRef = useRef(null)
-  const halfOfWindowWidth = window.innerWidth / 2
-  const halfOfWindowHeight = window.innerHeight / 2
+  const halfOfWindowWidth = canvasWidth / 2
+  const halfOfWindowHeight = canvasHeight / 2
   
   useEffect(() => {
     const canvas = canvasRef.current
+    canvas.width = canvasWidth
+    canvas.height = canvasHeight
     
     const drawCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
       const line = canvas.getContext('2d')
       // Y-axis
       line.beginPath()
       line.moveTo(halfOfWindowWidth, 0) //from (half width, 0)
-      line.lineTo(halfOfWindowWidth, window.innerHeight) // (half width, full height)
+      line.lineTo(halfOfWindowWidth, canvasHeight) // (half width, full height)
       line.stroke()
       // X-axis
       line.beginPath()
       line.moveTo(0, halfOfWindowHeight) //from (0, half height)
-      line.lineTo(window.innerWidth, halfOfWindowHeight) // to (full width, half height)
+      line.lineTo(canvasWidth, halfOfWindowHeight) // to (full width, half height)
       line.stroke()
 
       const steps = canvas.getContext('2d')
@@ -91,11 +92,13 @@ function DrawCanvas(props) {
     }
     drawCanvas()
     window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      setCanvasWidth(window.innerWidth)
+      setCanvasHeight(window.innerHeight)
+      canvas.width = canvasWidth
+      canvas.height = canvasHeight
       drawCanvas()
     })
-  }, [window.innerWidth])
+  }, [])
 
   return <canvas ref={canvasRef} className='canvas'></canvas>
 }
