@@ -2,7 +2,6 @@ import React from 'react'
 import GetRandomColor from './GetRandomColor';
 
 function DrawBubbles(canvas, data, title) {
-  console.log(data);
   
   const bubble = canvas.getContext('2d')
   const bubbleColor = GetRandomColor()
