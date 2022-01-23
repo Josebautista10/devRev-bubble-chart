@@ -7,3 +7,8 @@ const GetRandomColor = () => {
   return color === '#EBEBEB' ? GetRandomColor() : color
 }
 export default GetRandomColor
+
+// const hue = Math.floor(Math.random() * 360);
+//   const saturation = Math.floor(Math.random() * (100 + 1)) + "%";
+//   const lightness = Math.floor(Math.random() * (100 + 1)) + "%";
+//   return "hsl(" + hue + ", " + saturation + ", " + lightness + ")";

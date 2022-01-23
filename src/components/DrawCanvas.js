@@ -24,11 +24,13 @@ function DrawCanvas(props) {
     
     const drawCanvas = () => {
       const line = canvas.getContext('2d')
+
       // Y-axis
       line.beginPath()
       line.moveTo(halfOfWindowWidth, 0) //from (half width, 0)
       line.lineTo(halfOfWindowWidth, canvasHeight) // (half width, full height)
       line.stroke()
+      
       // X-axis
       line.beginPath()
       line.moveTo(0, halfOfWindowHeight) //from (0, half height)
@@ -74,11 +76,13 @@ function DrawCanvas(props) {
             ? b
             : a
         })
+
         const closestY = yAxis.reduce((a, b) => {
           return Math.abs(b - job.headcount) < Math.abs(a - job.headcount)
             ? b
             : a
         })
+        
         const foundXCoord = xCoords[closestX]
         const foundYCoord = yCoords[closestY]
         const salary = job.salary
@@ -100,7 +104,7 @@ function DrawCanvas(props) {
     })
   }, [])
 
-  return <canvas ref={canvasRef} className='canvas'></canvas>
+  return <canvas ref={canvasRef} className='canvas' data-testid={'canvas'}></canvas>
 }
 
 export default DrawCanvas

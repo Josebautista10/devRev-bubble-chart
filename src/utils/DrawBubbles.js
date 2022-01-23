@@ -20,7 +20,7 @@ function DrawBubbles(canvas, data, title) {
 
   const bubbleTitle = canvas.getContext('2d')
   bubbleTitle.font = '100% serif'
-  bubbleTitle.fillStyle = 'black'
+  bubbleTitle.fillStyle = 'white'
   bubbleTitle.textAlign = 'center'
   bubbleTitle.fillText(
     title,
